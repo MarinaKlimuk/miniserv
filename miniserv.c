@@ -1,19 +1,11 @@
-#include <sys/select.h>   // FD_ZERO, FD_SET, FD_ISSET, select()
-#include <sys/socket.h>
-#include <netinet/in.h>
-#include <netinet/ip.h>
-#include <unistd.h>
-#include <string.h>
-#include <stdlib.h>
-#include <stdio.h>
+#include "miniserv.h"
 
-fd_set afds, wfds, rfds;
 int max_fd = 0;
-char	buf_read[1001], buf_write[42];
+int count = 0;
 
 int main (int argc, char **argv){
     if (argc!=2)
-        return ("Wrong amount of arguments", -1);
+        return (-1);
     
     //1. CLEAR THE FOLDER WITH FILE DESCRIPTORS
     //afds is a variable of the fd_set type
@@ -32,7 +24,7 @@ int main (int argc, char **argv){
     int sockfd = socket(AF_INET, SOCK_STREAM, 0);
 
     if (sockfd < 0)
-        return ("Fatal error\n", -1);
+        return (-1);
 
     //max_fd is metter because select() needs to know the highrst fd number to scan
     max_fd = sockfd;
