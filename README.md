@@ -15,3 +15,12 @@ c -Wall -Wextra -Werror miniserv.c helpers.c
 3. Communicate: send messages in different terminals
 
 4. To disconnect type: ctrl+c or ctrl+d
+
+
+
+### SUMMARY: HOW DOES IT WORK
+
+Server creates socket(socket is like a telephone) and listens through it for connections
+When in endless while-loop it is waiting untill somebody will ask for connection or say something
+If someaone wants to connect, server creates a new socket for a client
+If some client wants to talk, it processes the message
